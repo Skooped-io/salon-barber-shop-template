@@ -20,7 +20,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/salon-barber-shop-template">
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
