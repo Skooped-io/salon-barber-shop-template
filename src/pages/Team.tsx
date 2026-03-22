@@ -1,60 +1,23 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
-
-const teamMembers = [
-  {
-    name: "Maya Chen",
-    title: "Founder & Color Specialist",
-    specialties: ["Balayage", "Color Correction", "Lived-in Color"],
-    years: 12,
-    bio: "Maya's philosophy is simple: color should look like it grew out of your head. Her hand-painted techniques have earned a loyal following across Brooklyn.",
-    signature: "Dimensional brunettes that catch the light just right.",
-    instagram: "@maya.hair",
-    initials: "MC",
-  },
-  {
-    name: "Theo Rivera",
-    title: "Master Barber",
-    specialties: ["Fades", "Straight Razor", "Beard Sculpting"],
-    years: 8,
-    bio: "Trained in classic barbering with a modern edge, Theo brings precision and artistry to every cut. His clean fades are legendary in the neighborhood.",
-    signature: "The kind of fade that makes strangers ask for your barber.",
-    instagram: "@theo.cuts",
-    initials: "TR",
-  },
-  {
-    name: "Priya Nakamura",
-    title: "Texture Expert",
-    specialties: ["Curly Cuts", "Natural Hair", "Protective Styles"],
-    years: 10,
-    bio: "Priya specializes in working with natural texture — curls, coils, and waves. She's a DevaCurl-certified stylist who celebrates every curl pattern.",
-    signature: "Curls that bounce, shine, and behave.",
-    instagram: "@priya.texture",
-    initials: "PN",
-  },
-  {
-    name: "Leo Moretti",
-    title: "Bridal & Events Specialist",
-    specialties: ["Bridal Styling", "Updos", "Editorial"],
-    years: 15,
-    bio: "With 15 years in editorial and bridal, Leo creates styles that photograph beautifully and last all night. He's styled looks for Vogue, ELLE, and over 200 weddings.",
-    signature: "Updos that survive the last dance.",
-    instagram: "@leo.styles",
-    initials: "LM",
-  },
-];
+import SeoHead from "@/components/SeoHead";
+import { seoConfig } from "@/lib/config";
 
 const Team = () => {
+  const { team, businessName } = seoConfig;
+
   return (
     <main className="pt-16">
+      <SeoHead page="team" />
+
       {/* Header */}
       <section className="section-dark py-20 section-padding">
         <div className="max-w-4xl mx-auto">
           <p className="text-xs font-heading font-semibold tracking-[0.2em] uppercase text-primary mb-2">The Artists</p>
           <h1 className="text-4xl md:text-6xl font-heading font-extrabold tracking-tight mb-4">Meet the Team</h1>
           <p className="text-dark-foreground/60 max-w-lg">
-            Every stylist at Luxe brings their own artistry. Find your perfect match.
+            Every stylist at {businessName} brings their own artistry. Find your perfect match.
           </p>
         </div>
       </section>
@@ -62,7 +25,7 @@ const Team = () => {
       {/* Team Grid */}
       <section className="py-20 section-padding max-w-5xl mx-auto">
         <div className="space-y-20">
-          {teamMembers.map((member, i) => (
+          {team.map((member, i) => (
             <ScrollReveal key={member.name}>
               <div className={`grid grid-cols-1 md:grid-cols-2 gap-10 items-start ${i % 2 === 1 ? "md:direction-rtl" : ""}`}>
                 {/* Photo placeholder */}
@@ -96,7 +59,7 @@ const Team = () => {
                       <Link to="/contact">Book with {member.name.split(" ")[0]}</Link>
                     </Button>
                     <a
-                      href="https://instagram.com"
+                      href={seoConfig.instagram.url}
                       target="_blank"
                       rel="noopener"
                       className="text-sm text-muted-foreground hover:text-primary transition-colors self-center"

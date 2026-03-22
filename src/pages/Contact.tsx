@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
+import SeoHead from "@/components/SeoHead";
+import { seoConfig } from "@/lib/config";
 import { MapPin, Phone, Clock, Instagram } from "lucide-react";
 
 const Contact = () => {
+  const { address, phone, instagram, hours, walkInPolicy, parking, team, services, businessName } = seoConfig;
+
   const [form, setForm] = useState({
     name: "", phone: "", email: "", service: "", stylist: "", date: "", time: "", notes: "",
   });
@@ -19,6 +23,8 @@ const Contact = () => {
 
   return (
     <main className="pt-16">
+      <SeoHead page="contact" />
+
       {/* Header */}
       <section className="section-dark py-20 section-padding">
         <div className="max-w-4xl mx-auto">
@@ -67,12 +73,9 @@ const Contact = () => {
                     className="w-full h-11 px-4 rounded-lg border border-border bg-background text-sm font-body focus:outline-none focus:ring-2 focus:ring-primary/30 transition-shadow"
                   >
                     <option value="">Select a service</option>
-                    <option>Haircut</option>
-                    <option>Color & Highlights</option>
-                    <option>Styling & Blowout</option>
-                    <option>Beard & Shave</option>
-                    <option>Treatment</option>
-                    <option>Bridal & Events</option>
+                    {services.contactOptions.map((opt) => (
+                      <option key={opt}>{opt}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -82,10 +85,9 @@ const Contact = () => {
                     className="w-full h-11 px-4 rounded-lg border border-border bg-background text-sm font-body focus:outline-none focus:ring-2 focus:ring-primary/30 transition-shadow"
                   >
                     <option value="">No preference</option>
-                    <option>Maya Chen</option>
-                    <option>Theo Rivera</option>
-                    <option>Priya Nakamura</option>
-                    <option>Leo Moretti</option>
+                    {team.map((t) => (
+                      <option key={t.name}>{t.name}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -125,8 +127,7 @@ const Contact = () => {
               <div>
                 <h3 className="font-heading font-bold text-lg mb-4">Walk-In Policy</h3>
                 <p className="text-sm text-foreground/70 leading-relaxed">
-                  Walk-ins are welcome based on availability. For the best experience, we recommend booking ahead —
-                  especially for color services and weekends.
+                  {walkInPolicy}
                 </p>
               </div>
 
@@ -135,15 +136,15 @@ const Contact = () => {
                 <div className="space-y-3 text-sm text-foreground/70">
                   <p className="flex items-start gap-3">
                     <MapPin size={16} className="text-primary mt-0.5 shrink-0" />
-                    123 Style Avenue<br />Brooklyn, NY 11201
+                    {address.street}<br />{address.city}, {address.state} {address.zip}
                   </p>
                   <p className="flex items-center gap-3">
                     <Phone size={16} className="text-primary shrink-0" />
-                    (718) 555-0142
+                    {phone}
                   </p>
-                  <a href="https://instagram.com" target="_blank" rel="noopener" className="flex items-center gap-3 hover:text-primary transition-colors">
+                  <a href={instagram.url} target="_blank" rel="noopener" className="flex items-center gap-3 hover:text-primary transition-colors">
                     <Instagram size={16} className="text-primary shrink-0" />
-                    @luxe.salon
+                    {instagram.handle}
                   </a>
                 </div>
               </div>
@@ -153,17 +154,17 @@ const Contact = () => {
                 <div className="space-y-1.5 text-sm text-foreground/70">
                   <p className="flex items-center gap-3">
                     <Clock size={16} className="text-primary shrink-0" />
-                    Mon–Fri: 9am – 8pm
+                    {hours.weekday}
                   </p>
-                  <p className="ml-[28px]">Saturday: 9am – 6pm</p>
-                  <p className="ml-[28px]">Sunday: 10am – 5pm</p>
+                  <p className="ml-[28px]">{hours.saturday}</p>
+                  <p className="ml-[28px]">{hours.sunday}</p>
                 </div>
               </div>
 
               <div>
                 <h3 className="font-heading font-bold text-lg mb-4">Parking</h3>
                 <p className="text-sm text-foreground/70 leading-relaxed">
-                  Street parking available on Style Ave and adjacent blocks. The Atlantic Terminal garage is a 5-minute walk.
+                  {parking}
                 </p>
               </div>
             </div>

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
+import SeoHead from "@/components/SeoHead";
+import { seoConfig, getImage } from "@/lib/config";
 import { Star, MapPin, Clock, ArrowRight } from "lucide-react";
 
 import heroImg from "@/assets/hero-salon.jpg";
@@ -16,37 +18,33 @@ import gallery3 from "@/assets/gallery-3.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
 
-const services = [
-  { name: "Haircuts", price: "From $45", img: haircutImg },
-  { name: "Color & Highlights", price: "From $120", img: colorImg },
-  { name: "Styling & Blowouts", price: "From $55", img: stylingImg },
-  { name: "Beard & Shave", price: "From $30", img: beardImg },
-  { name: "Treatments", price: "From $65", img: treatmentImg },
-  { name: "Bridal & Events", price: "From $200", img: bridalImg },
-];
+const serviceImageMap: Record<string, string> = {
+  "Haircuts": haircutImg,
+  "Color & Highlights": colorImg,
+  "Styling & Blowouts": stylingImg,
+  "Beard & Shave": beardImg,
+  "Treatments": treatmentImg,
+  "Bridal & Events": bridalImg,
+};
 
 const galleryImages = [gallery1, gallery2, gallery3, gallery5, gallery6, gallery6];
 
-const team = [
-  { name: "Maya Chen", specialty: "Color Specialist", years: 12 },
-  { name: "Theo Rivera", specialty: "Master Barber", years: 8 },
-  { name: "Priya Nakamura", specialty: "Texture Expert", years: 10 },
-  { name: "Leo Moretti", specialty: "Bridal & Events", years: 15 },
-];
-
-const reviews = [
-  { name: "Samira K.", text: "Best salon experience I've ever had. Maya transformed my hair and my confidence.", rating: 5 },
-  { name: "Marcus T.", text: "Theo gives the cleanest fade in Brooklyn. Period. Don't go anywhere else.", rating: 5 },
-  { name: "Elena W.", text: "Finally found a salon that actually listens. My balayage came out exactly how I imagined.", rating: 5 },
-];
-
 const Homepage = () => {
+  const { hero, cta, reviews, team, services, address, hours } = seoConfig;
+  const homeServices = services.homePreview;
+
   return (
     <main>
+      <SeoHead page="home" />
+
       {/* Hero */}
       <section className="relative h-screen min-h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImg} alt="Luxe Salon interior" className="w-full h-full object-cover" />
+          <img
+            src={getImage(null, 'hero', heroImg)}
+            alt={`${seoConfig.businessName} interior`}
+            className="w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/70 to-transparent" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto section-padding w-full">
@@ -55,23 +53,25 @@ const Homepage = () => {
               className="font-heading text-5xl md:text-7xl font-extrabold tracking-tight text-secondary-foreground leading-[0.95] text-balance"
               style={{ animation: "revealUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards" }}
             >
-              Look Good.<br />Feel Great.
+              {hero.headline.split('\n').map((line, i) => (
+                <span key={i}>{line}{i === 0 && <br />}</span>
+              ))}
             </h1>
             <p
               className="mt-6 text-lg text-secondary-foreground/70 max-w-md leading-relaxed"
               style={{ opacity: 0, animation: "revealUp 0.7s cubic-bezier(0.16,1,0.3,1) 200ms forwards" }}
             >
-              Cuts, color, and styling by Brooklyn's best. Where artistry meets technique.
+              {hero.subheadline}
             </p>
             <div
               className="mt-8 flex flex-wrap gap-4"
               style={{ opacity: 0, animation: "revealUp 0.7s cubic-bezier(0.16,1,0.3,1) 400ms forwards" }}
             >
               <Button asChild variant="hero" size="lg">
-                <Link to="/contact">Book Appointment</Link>
+                <Link to="/contact">{hero.cta}</Link>
               </Button>
               <Button asChild variant="heroOutline" size="lg">
-                <Link to="/gallery">View Our Work</Link>
+                <Link to="/gallery">{hero.ctaSecondary}</Link>
               </Button>
             </div>
           </div>
@@ -92,12 +92,12 @@ const Homepage = () => {
           </div>
         </ScrollReveal>
         <div className="flex gap-5 overflow-x-auto pb-4 -mx-6 px-6 snap-x snap-mandatory scrollbar-none">
-          {services.map((s, i) => (
+          {homeServices.map((s, i) => (
             <ScrollReveal key={s.name} delay={i * 80} className="snap-start">
               <div className="min-w-[260px] w-[260px] group cursor-pointer">
                 <div className="relative overflow-hidden rounded-lg aspect-[3/4]">
                   <img
-                    src={s.img}
+                    src={getImage(null, `service_${i}`, serviceImageMap[s.name] || haircutImg)}
                     alt={s.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -132,8 +132,8 @@ const Homepage = () => {
             <ScrollReveal key={i} delay={i * 60} className="snap-start">
               <div className="min-w-[200px] w-[200px] md:min-w-[260px] md:w-[260px] aspect-square overflow-hidden rounded-lg">
                 <img
-                  src={img}
-                  alt={`Portfolio work ${i + 1}`}
+                  src={getImage(null, `gallery_${i + 1}`, img)}
+                  alt={`${seoConfig.businessName} portfolio work ${i + 1}`}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -154,12 +154,12 @@ const Homepage = () => {
               <div className="min-w-[240px] w-[240px] bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
                 <div className="aspect-[3/4] bg-secondary/10 flex items-center justify-center">
                   <span className="font-heading text-4xl font-bold text-secondary/20">
-                    {t.name.split(" ").map(n => n[0]).join("")}
+                    {t.initials}
                   </span>
                 </div>
                 <div className="p-5">
                   <h3 className="font-heading font-bold text-base">{t.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{t.specialty}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{t.title}</p>
                   <p className="text-xs text-muted-foreground/60 mt-1">{t.years} years experience</p>
                   <Button asChild variant="outline" size="sm" className="mt-4 w-full text-xs">
                     <Link to="/contact">Book with {t.name.split(" ")[0]}</Link>
@@ -212,14 +212,14 @@ const Homepage = () => {
               <div className="space-y-4 text-sm">
                 <p className="flex items-start gap-3">
                   <MapPin size={18} className="text-primary mt-0.5 shrink-0" />
-                  <span>123 Style Avenue<br />Brooklyn, NY 11201</span>
+                  <span>{address.street}<br />{address.city}, {address.state} {address.zip}</span>
                 </p>
                 <div className="flex items-start gap-3">
                   <Clock size={18} className="text-primary mt-0.5 shrink-0" />
                   <div>
-                    <p>Mon–Fri: 9am – 8pm</p>
-                    <p>Saturday: 9am – 6pm</p>
-                    <p>Sunday: 10am – 5pm</p>
+                    <p>{hours.weekday}</p>
+                    <p>{hours.saturday}</p>
+                    <p>{hours.sunday}</p>
                   </div>
                 </div>
               </div>
@@ -235,13 +235,13 @@ const Homepage = () => {
       <section className="section-dark py-24 section-padding">
         <ScrollReveal className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-heading font-extrabold tracking-tight mb-6 text-balance">
-            Ready for a fresh look?
+            {cta.headline}
           </h2>
           <p className="text-dark-foreground/60 mb-8 max-w-md mx-auto">
-            Your best hair is one appointment away. Book today and let us take care of the rest.
+            {cta.subtext}
           </p>
           <Button asChild variant="hero" size="xl">
-            <Link to="/contact">Book Your Appointment</Link>
+            <Link to="/contact">{cta.button}</Link>
           </Button>
         </ScrollReveal>
       </section>
