@@ -95,54 +95,49 @@ const ServiceDetail = () => {
   const service = getServiceBySlug(slug || "");
   const allServices = getAllServices();
 
-  if (!service) {
-    return (
-      <main className="pt-16 min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-3xl font-heading font-bold mb-4">Service Not Found</h1>
-          <Button asChild variant="default">
-            <Link to="/services">View All Services</Link>
-          </Button>
-        </div>
-      </main>
-    );
-  }
+  const content = service ? generateContent(service.name, service.category, seoConfig.industry) : null;
+  const related = service ? allServices.filter((s) => s.slug !== service.slug).slice(0, 4) : [];
+  const pageTitle = service
+    ? `${service.name} in ${seoConfig.address.city}, ${seoConfig.address.state} | ${seoConfig.businessName}`
+    : "Service Not Found";
+  const pageDesc = service
+    ? `Professional ${service.name.toLowerCase()} services in ${seoConfig.serviceArea}. ${service.desc}. Book online or call ${seoConfig.phone}.`
+    : "";
 
-  const content = generateContent(service.name, service.category, seoConfig.industry);
-  const related = allServices.filter((s) => s.slug !== service.slug).slice(0, 4);
-  const pageTitle = `${service.name} in ${seoConfig.address.city}, ${seoConfig.address.state} | ${seoConfig.businessName}`;
-  const pageDesc = `Professional ${service.name.toLowerCase()} services in ${seoConfig.serviceArea}. ${service.desc}. Book online or call ${seoConfig.phone}.`;
-
-  const schemaMarkup = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.name,
-    description: service.desc,
-    provider: {
-      "@type": "LocalBusiness",
-      name: seoConfig.businessName,
-      telephone: seoConfig.phone,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: seoConfig.address.street,
-        addressLocality: seoConfig.address.city,
-        addressRegion: seoConfig.address.state,
-        postalCode: seoConfig.address.zip,
-      },
-    },
-    areaServed: seoConfig.serviceArea,
-  };
+  const schemaMarkup = service
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: service.name,
+        description: service.desc,
+        provider: {
+          "@type": "LocalBusiness",
+          name: seoConfig.businessName,
+          telephone: seoConfig.phone,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: seoConfig.address.street,
+            addressLocality: seoConfig.address.city,
+            addressRegion: seoConfig.address.state,
+            postalCode: seoConfig.address.zip,
+          },
+        },
+        areaServed: seoConfig.serviceArea,
+      }
+    : null;
 
   useEffect(() => {
     document.title = pageTitle;
-    const setMeta = (attr: string, key: string, content: string) => {
+    if (!service) return;
+
+    const setMeta = (attr: string, key: string, val: string) => {
       let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
       if (!el) {
         el = document.createElement("meta");
         el.setAttribute(attr, key);
         document.head.appendChild(el);
       }
-      el.content = content;
+      el.content = val;
     };
     setMeta("name", "description", pageDesc);
     setMeta("property", "og:title", pageTitle);
@@ -157,6 +152,19 @@ const ServiceDetail = () => {
     document.head.appendChild(script);
     return () => { script.remove(); };
   }, [slug, pageTitle, pageDesc]);
+
+  if (!service || !content) {
+    return (
+      <main className="pt-16 min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-heading font-bold mb-4">Service Not Found</h1>
+          <Button asChild variant="default">
+            <Link to="/services">View All Services</Link>
+          </Button>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="pt-16">
