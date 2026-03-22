@@ -1,0 +1,211 @@
+{
+  "businessName": "Luxe Salon",
+  "brandTag": "LUXE.SALON",
+  "tagline": "Where artistry meets technique. Your best look starts here.",
+  "phone": "(718) 555-0142",
+  "email": "hello@luxesalon.com",
+  "instagram": {
+    "handle": "@luxe.salon",
+    "url": "https://instagram.com"
+  },
+  "address": {
+    "street": "123 Style Avenue",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11201",
+    "full": "123 Style Avenue, Brooklyn, NY 11201",
+    "short": "123 Style Ave, Brooklyn, NY"
+  },
+  "serviceArea": "Brooklyn, NY",
+  "industry": "Hair Salon",
+  "yearEstablished": "2018",
+  "licenseNumber": "",
+  "hours": {
+    "weekday": "Mon–Fri: 9am – 8pm",
+    "saturday": "Saturday: 9am – 6pm",
+    "sunday": "Sunday: 10am – 5pm"
+  },
+  "walkInPolicy": "Walk-ins are welcome based on availability. For the best experience, we recommend booking ahead — especially for color services and weekends.",
+  "parking": "Street parking available on Style Ave and adjacent blocks. The Atlantic Terminal garage is a 5-minute walk.",
+  "about": {
+    "headline": "More Than a Salon",
+    "paragraphs": [
+      "Founded in 2018, Luxe Salon was born from a simple belief: a great haircut changes everything. Not just how you look — how you carry yourself, how you feel walking into a room.",
+      "Our founder, Maya Chen, spent a decade working in top salons across New York before opening Luxe in the heart of Brooklyn. She built a space where creativity, technique, and genuine hospitality come together.",
+      "Today, our team of specialists brings decades of combined experience to every client. Whether it's a precision cut, a bold color transformation, or wedding-day styling, we approach every service as an art form."
+    ],
+    "philosophy": "We believe a great haircut changes everything.",
+    "philosophySub": "Every client deserves to leave feeling like the best version of themselves. We listen first, then create.",
+    "products": ["Olaplex", "Kevin Murphy", "Redken", "Moroccan Oil"],
+    "productsDescription": "We partner exclusively with brands that share our commitment to quality and sustainability. Every product in our salon is carefully selected for performance and ingredient integrity."
+  },
+  "team": [
+    {
+      "name": "Maya Chen",
+      "title": "Founder & Color Specialist",
+      "specialties": ["Balayage", "Color Correction", "Lived-in Color"],
+      "years": 12,
+      "bio": "Maya's philosophy is simple: color should look like it grew out of your head. Her hand-painted techniques have earned a loyal following across Brooklyn.",
+      "signature": "Dimensional brunettes that catch the light just right.",
+      "instagram": "@maya.hair",
+      "initials": "MC"
+    },
+    {
+      "name": "Theo Rivera",
+      "title": "Master Barber",
+      "specialties": ["Fades", "Straight Razor", "Beard Sculpting"],
+      "years": 8,
+      "bio": "Trained in classic barbering with a modern edge, Theo brings precision and artistry to every cut. His clean fades are legendary in the neighborhood.",
+      "signature": "The kind of fade that makes strangers ask for your barber.",
+      "instagram": "@theo.cuts",
+      "initials": "TR"
+    },
+    {
+      "name": "Priya Nakamura",
+      "title": "Texture Expert",
+      "specialties": ["Curly Cuts", "Natural Hair", "Protective Styles"],
+      "years": 10,
+      "bio": "Priya specializes in working with natural texture — curls, coils, and waves. She's a DevaCurl-certified stylist who celebrates every curl pattern.",
+      "signature": "Curls that bounce, shine, and behave.",
+      "instagram": "@priya.texture",
+      "initials": "PN"
+    },
+    {
+      "name": "Leo Moretti",
+      "title": "Bridal & Events Specialist",
+      "specialties": ["Bridal Styling", "Updos", "Editorial"],
+      "years": 15,
+      "bio": "With 15 years in editorial and bridal, Leo creates styles that photograph beautifully and last all night. He's styled looks for Vogue, ELLE, and over 200 weddings.",
+      "signature": "Updos that survive the last dance.",
+      "instagram": "@leo.styles",
+      "initials": "LM"
+    }
+  ],
+  "services": {
+    "categories": [
+      {
+        "title": "Cuts",
+        "items": [
+          { "name": "Women's Haircut", "desc": "Consultation, shampoo, cut, and style", "price": "$65+", "duration": "60 min" },
+          { "name": "Men's Haircut", "desc": "Precision cut with hot towel finish", "price": "$45+", "duration": "45 min" },
+          { "name": "Children's Cut", "desc": "Ages 12 and under", "price": "$35", "duration": "30 min" },
+          { "name": "Bang Trim", "desc": "Quick fringe maintenance", "price": "$15", "duration": "15 min" }
+        ]
+      },
+      {
+        "title": "Color",
+        "items": [
+          { "name": "Single Process", "desc": "All-over color application", "price": "$120+", "duration": "90 min" },
+          { "name": "Balayage / Ombré", "desc": "Hand-painted highlights for natural dimension", "price": "$200+", "duration": "2.5 hrs", "premium": true },
+          { "name": "Full Highlights", "desc": "Foil highlights throughout", "price": "$180+", "duration": "2 hrs" },
+          { "name": "Partial Highlights", "desc": "Face-framing and crown highlights", "price": "$130+", "duration": "90 min" },
+          { "name": "Color Correction", "desc": "Fix or transform previous color work", "price": "$250+", "duration": "3+ hrs", "premium": true },
+          { "name": "Gloss / Toner", "desc": "Shine-boosting semi-permanent toner", "price": "$55+", "duration": "30 min" }
+        ]
+      },
+      {
+        "title": "Styling",
+        "items": [
+          { "name": "Blowout", "desc": "Shampoo and professional blowdry", "price": "$55+", "duration": "45 min" },
+          { "name": "Special Occasion", "desc": "Updo or formal styling", "price": "$85+", "duration": "60 min" },
+          { "name": "Bridal Styling", "desc": "Trial + wedding day styling", "price": "$350+", "duration": "Varies", "premium": true },
+          { "name": "Braids & Twists", "desc": "Creative braiding and protective styles", "price": "$75+", "duration": "60+ min" }
+        ]
+      },
+      {
+        "title": "Treatments",
+        "items": [
+          { "name": "Deep Conditioning", "desc": "Intensive moisture and repair treatment", "price": "$45+", "duration": "30 min" },
+          { "name": "Keratin Smoothing", "desc": "Frizz reduction for up to 3 months", "price": "$300+", "duration": "2.5 hrs", "premium": true },
+          { "name": "Scalp Treatment", "desc": "Exfoliation and nourishing scalp care", "price": "$65+", "duration": "45 min" },
+          { "name": "Olaplex Treatment", "desc": "Bond-building repair for damaged hair", "price": "$75+", "duration": "30 min" }
+        ]
+      },
+      {
+        "title": "Barbering",
+        "items": [
+          { "name": "Classic Cut & Fade", "desc": "Precision clipper and scissor work", "price": "$45+", "duration": "45 min" },
+          { "name": "Beard Trim & Shape", "desc": "Sculpted beard with hot towel", "price": "$30+", "duration": "30 min" },
+          { "name": "Straight Razor Shave", "desc": "Traditional hot lather razor shave", "price": "$40+", "duration": "30 min" },
+          { "name": "The Full Experience", "desc": "Cut, beard, shave, and scalp massage", "price": "$95+", "duration": "90 min", "premium": true }
+        ]
+      }
+    ],
+    "addOns": [
+      { "name": "Olaplex Add-On", "price": "+$35" },
+      { "name": "Scalp Massage", "price": "+$20" },
+      { "name": "Extra Toner", "price": "+$30" },
+      { "name": "Clip-In Extensions (per row)", "price": "+$50" }
+    ],
+    "homePreview": [
+      { "name": "Haircuts", "price": "From $45" },
+      { "name": "Color & Highlights", "price": "From $120" },
+      { "name": "Styling & Blowouts", "price": "From $55" },
+      { "name": "Beard & Shave", "price": "From $30" },
+      { "name": "Treatments", "price": "From $65" },
+      { "name": "Bridal & Events", "price": "From $200" }
+    ],
+    "contactOptions": ["Haircut", "Color & Highlights", "Styling & Blowout", "Beard & Shave", "Treatment", "Bridal & Events"]
+  },
+  "reviews": [
+    { "name": "Samira K.", "text": "Best salon experience I've ever had. Maya transformed my hair and my confidence.", "rating": 5 },
+    { "name": "Marcus T.", "text": "Theo gives the cleanest fade in Brooklyn. Period. Don't go anywhere else.", "rating": 5 },
+    { "name": "Elena W.", "text": "Finally found a salon that actually listens. My balayage came out exactly how I imagined.", "rating": 5 }
+  ],
+  "gallery": {
+    "filters": ["All", "Cuts", "Color", "Styling", "Bridal", "Barbering"],
+    "images": [
+      { "slot": "gallery_1", "category": "Cuts", "credit": "Maya Chen" },
+      { "slot": "gallery_2", "category": "Color", "credit": "Priya Nakamura" },
+      { "slot": "gallery_3", "category": "Barbering", "credit": "Theo Rivera" },
+      { "slot": "gallery_4", "category": "Color", "credit": "Maya Chen" },
+      { "slot": "gallery_5", "category": "Color", "credit": "Priya Nakamura" },
+      { "slot": "gallery_6", "category": "Cuts", "credit": "Maya Chen" },
+      { "slot": "gallery_7", "category": "Styling", "credit": "Leo Moretti" },
+      { "slot": "gallery_8", "category": "Bridal", "credit": "Leo Moretti" }
+    ]
+  },
+  "hero": {
+    "headline": "Look Good.\nFeel Great.",
+    "subheadline": "Cuts, color, and styling by Brooklyn's best. Where artistry meets technique.",
+    "cta": "Book Appointment",
+    "ctaSecondary": "View Our Work"
+  },
+  "cta": {
+    "headline": "Ready for a fresh look?",
+    "subtext": "Your best hair is one appointment away. Book today and let us take care of the rest.",
+    "button": "Book Your Appointment"
+  },
+  "seo": {
+    "home": {
+      "title": "Luxe Salon | Hair Salon in Brooklyn, NY",
+      "description": "Top-rated hair salon in Brooklyn. Cuts, color, highlights & styling. Book online or walk in. (718) 555-0142.",
+      "h1": "Look Good. Feel Great."
+    },
+    "about": {
+      "title": "About Luxe Salon | Brooklyn, NY",
+      "description": "Founded in 2018, Luxe Salon brings artistry and technique together. Meet our team of Brooklyn's best hair stylists."
+    },
+    "services": {
+      "title": "Hair Salon Services & Pricing | Luxe Salon",
+      "description": "Full menu of hair services: cuts, color, highlights, balayage, barbering, treatments & bridal styling in Brooklyn, NY."
+    },
+    "gallery": {
+      "title": "Our Work | Luxe Salon Portfolio",
+      "description": "Browse our portfolio of cuts, color, styling and barbering work by Brooklyn's top stylists at Luxe Salon."
+    },
+    "team": {
+      "title": "Meet Our Stylists | Luxe Salon Brooklyn",
+      "description": "Meet the artists behind Luxe Salon. Expert colorists, barbers, texture specialists and bridal stylists in Brooklyn."
+    },
+    "contact": {
+      "title": "Book an Appointment | Luxe Salon Brooklyn",
+      "description": "Book your appointment at Luxe Salon in Brooklyn. Walk-ins welcome. Call (718) 555-0142 or request online."
+    }
+  },
+  "branding": {
+    "primaryColor": "347 77% 50%",
+    "secondaryColor": "240 6% 10%",
+    "accentColor": "43 72% 52%"
+  }
+}
