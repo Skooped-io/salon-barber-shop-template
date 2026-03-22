@@ -23,3 +23,17 @@ export function getImage(dynamicConfig: any, slot: string, fallback: string): st
 export function getPrimaryColor(dynamicConfig: any): string {
   return dynamicConfig?.branding?.primaryColor || staticConfig.branding?.primaryColor || '347 77% 50%';
 }
+
+export function slugify(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+export function getAllServices() {
+  return seoConfig.services.categories.flatMap((cat) =>
+    cat.items.map((item) => ({ ...item, category: cat.title, slug: slugify(item.name) }))
+  );
+}
+
+export function getServiceBySlug(slug: string) {
+  return getAllServices().find((s) => s.slug === slug) || null;
+}
