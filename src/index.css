@@ -15,12 +15,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 6% 10%;
 
+    /* Brand colors — mapped from siteConfig.json branding */
+    /* primaryColor: Hot Rose */
     --primary: 347 77% 50%;
     --primary-foreground: 0 0% 100%;
 
+    /* secondaryColor: Rich Black */
     --secondary: 240 6% 10%;
     --secondary-foreground: 0 0% 100%;
 
+    /* accentColor: Gold */
     --accent: 43 72% 52%;
     --accent-foreground: 240 6% 10%;
 
