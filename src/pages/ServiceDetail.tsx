@@ -133,15 +133,33 @@ const ServiceDetail = () => {
     areaServed: seoConfig.serviceArea,
   };
 
+  useEffect(() => {
+    document.title = pageTitle;
+    const setMeta = (attr: string, key: string, content: string) => {
+      let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute(attr, key);
+        document.head.appendChild(el);
+      }
+      el.content = content;
+    };
+    setMeta("name", "description", pageDesc);
+    setMeta("property", "og:title", pageTitle);
+    setMeta("property", "og:description", pageDesc);
+
+    const existingLd = document.querySelector('script[data-ld="service"]');
+    if (existingLd) existingLd.remove();
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.setAttribute("data-ld", "service");
+    script.textContent = JSON.stringify(schemaMarkup);
+    document.head.appendChild(script);
+    return () => { script.remove(); };
+  }, [slug, pageTitle, pageDesc]);
+
   return (
     <main className="pt-16">
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDesc} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDesc} />
-        <script type="application/ld+json">{JSON.stringify(schemaMarkup)}</script>
-      </Helmet>
 
       {/* Hero */}
       <section className="section-dark py-20 section-padding">
