@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
 import SeoHead from "@/components/SeoHead";
-import { seoConfig } from "@/lib/config";
+import { seoConfig, slugify } from "@/lib/config";
 
 const Services = () => {
   const { services } = seoConfig;
@@ -37,9 +37,10 @@ const Services = () => {
               </div>
               <div className="space-y-0">
                 {cat.items.map((s) => (
-                  <div
+                  <Link
                     key={s.name}
-                    className={`flex items-start justify-between py-5 border-b border-border/50 last:border-0 ${
+                    to={`/services/${slugify(s.name)}`}
+                    className={`flex items-start justify-between py-5 border-b border-border/50 last:border-0 hover:bg-muted/30 -mx-3 px-3 rounded-lg transition-colors ${
                       s.premium ? "relative" : ""
                     }`}
                   >
@@ -58,7 +59,7 @@ const Services = () => {
                       <p className="font-heading font-bold text-base">{s.price}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{s.duration}</p>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
