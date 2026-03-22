@@ -1,5 +1,7 @@
 import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
+import SeoHead from "@/components/SeoHead";
+import { seoConfig, getImage } from "@/lib/config";
 
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
@@ -10,27 +12,35 @@ import colorImg from "@/assets/color-service.jpg";
 import stylingImg from "@/assets/styling-service.jpg";
 import bridalImg from "@/assets/bridal-service.jpg";
 
-const allImages = [
-  { src: gallery1, category: "Cuts", credit: "Maya Chen" },
-  { src: gallery2, category: "Color", credit: "Priya Nakamura" },
-  { src: gallery3, category: "Barbering", credit: "Theo Rivera" },
-  { src: colorImg, category: "Color", credit: "Maya Chen" },
-  { src: gallery5, category: "Color", credit: "Priya Nakamura" },
-  { src: gallery6, category: "Cuts", credit: "Maya Chen" },
-  { src: stylingImg, category: "Styling", credit: "Leo Moretti" },
-  { src: bridalImg, category: "Bridal", credit: "Leo Moretti" },
-];
-
-const filters = ["All", "Cuts", "Color", "Styling", "Bridal", "Barbering"];
+const fallbackImages: Record<string, string> = {
+  gallery_1: gallery1,
+  gallery_2: gallery2,
+  gallery_3: gallery3,
+  gallery_4: colorImg,
+  gallery_5: gallery5,
+  gallery_6: gallery6,
+  gallery_7: stylingImg,
+  gallery_8: bridalImg,
+};
 
 const Gallery = () => {
   const [filter, setFilter] = useState("All");
   const [selected, setSelected] = useState<number | null>(null);
 
+  const { gallery, businessName, instagram } = seoConfig;
+
+  const allImages = gallery.images.map((img) => ({
+    src: getImage(null, img.slot, fallbackImages[img.slot] || gallery1),
+    category: img.category,
+    credit: img.credit,
+  }));
+
   const filtered = filter === "All" ? allImages : allImages.filter((img) => img.category === filter);
 
   return (
     <main className="pt-16">
+      <SeoHead page="gallery" />
+
       {/* Header */}
       <section className="section-dark py-20 section-padding">
         <div className="max-w-4xl mx-auto">
@@ -43,7 +53,7 @@ const Gallery = () => {
       {/* Filters */}
       <section className="py-8 section-padding max-w-6xl mx-auto">
         <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-          {filters.map((f) => (
+          {gallery.filters.map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
@@ -88,12 +98,12 @@ const Gallery = () => {
         <ScrollReveal className="mt-16 text-center">
           <p className="text-muted-foreground text-sm mb-3">See more on Instagram</p>
           <a
-            href="https://instagram.com"
+            href={instagram.url}
             target="_blank"
             rel="noopener"
             className="font-heading font-semibold text-primary hover:underline"
           >
-            @luxe.salon
+            {instagram.handle}
           </a>
         </ScrollReveal>
       </section>
