@@ -1,9 +1,9 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
-import { seoConfig, getServiceBySlug, getAllServices, slugify } from "@/lib/config";
+import { seoConfig, getServiceBySlug, getAllServices } from "@/lib/config";
 import { Phone, MapPin, ChevronRight } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 
 const serviceContent: Record<string, { paragraphs: string[]; includes: string[] }> = {};
 
