@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
 import SeoHead from "@/components/SeoHead";
-import { seoConfig } from "@/lib/config";
+import { seoConfig, slugify } from "@/lib/config";
 
 const Services = () => {
   const { services } = seoConfig;
